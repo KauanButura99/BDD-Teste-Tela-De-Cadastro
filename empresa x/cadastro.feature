@@ -1,60 +1,51 @@
-#language: pt
+      #language: pt
 
-Funcionalidade: Tela de cadastro
-Como aluno da da empresa x
-Quero me cadastrar
-Para vizualizar meus recursos
+      Funcionalidade: Tela de cadastro
+      Como aluno da  empresa x
+      Quero me cadastrar
+      Para poder acessar a plataforma
 
-Contexto:
-Dado que eu acesse a página de cadastro empresa x
+      Contexto:
+      Dado que eu acesse a página de cadastro empresa x
 
-Cenário: Autenticação Válida
-Quando eu digitar nome "Kauan Victor Butura Silva"
-E o usuário "kauanvictor09@gmail.com"
-E a senha "LaFlame15"
-Entao deve aparacer uma mensagem de sucesso
+      Cenário: Autenticação Válida
+      Quando eu digitar nome "João Santos da Silva"
+      E o usuário "joãosantos@gmail.com"
+      E a senha "123456La"
+      E clicar no botão "inscrever-se"
+      Entao deve aparacer uma mensagem de sucesso
 
-Cenário: Campo nome vazio
-Quando eu digitar o usuário "kauanvictor09@gmail.com"
-E a senha "LaFlame15"
-Entao deve aparacer uma mensagem de erro
+      Cenário: Campo nome vazio
+      Quando eu digitar o usuário "joãosantos@gmail.com"
+      E a senha "123456La"
+      Entao deve aparacer uma mensagem "Campo obrigatório"
 
-Cenário: Campo email vazio
-Quando eu digitar o nome "kauan victor butura silva"
-E a senha "LaFlame15"
-Entao deve aparacer uma mensagem de erro
+      Esquema do Cenário: Invalidação de usuários
+      Quando eu digitar o <nome>
+      E o <email>
+      E a <senha>
+      E clicar no botão "Inscrever-se"
+      Entao deve exibir <mensagem>
 
-Cenário: Email sem @
-Quando eu digitar o nome "Kauan Victor Butura Silva"
-E o usuário "kauanvictor09gmail.com"
-E a senha "LaFlame15"
-Entao deve aparacer uma mensagem de erro
+      Exemplos:
 
-Cenário: Senha sem letra maiúscula
-Quando eu digitar o nome "Kauan Victor Butura Silva"
-E o usuário "kauanvictor09@gmail.com"
-E a senha "laFlame15"
-Entao deve aparacer uma mensagem de erro
+      | nome                   | email                  | senha      | mensagem                |
+      | "João Santos da Silva" | ""                     | "123456La" | "Campo obrigatório"     |
+      | "João Santos da Silva" | "joãosantosgmail.com"  | "123456La" | "E-mail inválido"       |
+      | "João Santos da Silva" | "joãosantos@gmail.com" | "123456La" | "E-mail já cadastrado." |
 
-Cenário: Senha sem letra minúscula
-Quando eu digitar o nome "Kauan Victor Butura Silva"
-E o usuário "kauanvictor09@gmail.com"
-E a senha "LAFlAME15"
-Entao deve aparacer uma mensagem de erro
 
-Cenário: Senha sem número
-Quando eu digitar o nome "Kauan Victor Butura Silva"
-E o usuário "kauanvictor09@gmail.com"
-E a senha "LaFlameee"
-Entao deve aparacer uma mensagem de erro
+      Esquema do Cenário: Ivalidações de senhas
+      Quando eu digitar o <nome>
+      E o <email>
+      E a senha <senha>
+      Entao deve exibir <mesagem>
 
-Cenário: Senha com 7 caracteres
-Quando eu digitar o nome "Kauan Victor Butura Silva"
-E o usuário "kauanvictor09@gmail.com"
-E a senha "LaFlame"
-Entao deve aparacer uma mensagem de erro
+      Exemplos:
 
-Cenário: Cadastro com campo senha vazio
-Quando eu digitar o nome "Kauan Victor Butura Silva"
-E o email "kauanvictor09@gmail.com",
-Entao deve aparacer uma mensagem de erro
+      | nome                   | email                  | senha         | mensagem                                  |
+      | "João Santos da Silva" | "joãosantos@gmail.com" | "123456la"    | "A senha precisa ter uma letra maiúscula" |
+      | "João Santos da Silva" | "joãosantos@gmail.com" | "123456LA"    | "A senha precisa ter uma letra minúscula" |
+      | "João Santos da Silva" | "joãosantos@gmail.com" | "Lalalalalal" | "A senha precisa ter um número"           |
+      | "João Santos da Silva" | "joãosantos@gmail.com" | "12345La"     | "A senha precisa ter 8 caracteres"        |
+      | "João Santos da Silva" | "joãosantos@gmail.com" | ""            | "Campo obrigatório"                       |
